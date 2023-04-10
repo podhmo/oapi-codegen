@@ -261,7 +261,6 @@ func operationsGroupedByTag(ops []OperationDefinition) []GroupedOperationDefinit
 		values, ok := m[op.Tag]
 		if !ok {
 			tags = append(tags, op.Tag)
-			values = []OperationDefinition{op}
 		}
 		m[op.Tag] = append(values, op)
 	}
