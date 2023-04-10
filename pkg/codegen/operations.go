@@ -222,6 +222,7 @@ type OperationDefinition struct {
 	Method              string                  // GET, POST, DELETE, etc.
 	Path                string                  // The Swagger path for the operation, like /resource/{id}
 	Spec                *openapi3.Operation
+	Tag                 string // first tag
 }
 
 // Params returns the list of all parameters except Path parameters. Path parameters
@@ -559,6 +560,9 @@ func OperationDefinitions(swagger *openapi3.T) ([]OperationDefinition, error) {
 				Bodies:          bodyDefinitions,
 				Responses:       responseDefinitions,
 				TypeDefinitions: typeDefinitions,
+			}
+			if len(op.Tags) > 0 && op.Tags[0] != "" {
+				opDef.Tag = strings.TrimSpace(op.Tags[0])
 			}
 
 			// check for overrides of SecurityDefinitions.
