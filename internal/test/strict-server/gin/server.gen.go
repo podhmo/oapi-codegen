@@ -25,34 +25,34 @@ import (
 // ServerInterface represents all server handlers.
 type ServerInterface interface {
 
-	// (POST /json)
+	// (POST /json) (tag:   )
 	JSONExample(c *gin.Context)
 
-	// (POST /multipart)
+	// (POST /multipart) (tag:   )
 	MultipartExample(c *gin.Context)
 
-	// (POST /multiple)
+	// (POST /multiple) (tag:   )
 	MultipleRequestAndResponseTypes(c *gin.Context)
 
-	// (GET /reserved-go-keyword-parameters/{type})
+	// (GET /reserved-go-keyword-parameters/{type}) (tag:   )
 	ReservedGoKeywordParameters(c *gin.Context, pType string)
 
-	// (POST /reusable-responses)
+	// (POST /reusable-responses) (tag:   )
 	ReusableResponses(c *gin.Context)
 
-	// (POST /text)
+	// (POST /text) (tag:   )
 	TextExample(c *gin.Context)
 
-	// (POST /unknown)
+	// (POST /unknown) (tag:   )
 	UnknownExample(c *gin.Context)
 
-	// (POST /unspecified-content-type)
+	// (POST /unspecified-content-type) (tag:   )
 	UnspecifiedContentType(c *gin.Context)
 
-	// (POST /urlencoded)
+	// (POST /urlencoded) (tag:   )
 	URLEncodedExample(c *gin.Context)
 
-	// (POST /with-headers)
+	// (POST /with-headers) (tag:   )
 	HeadersExample(c *gin.Context, params HeadersExampleParams)
 
 	// (POST /with-union)

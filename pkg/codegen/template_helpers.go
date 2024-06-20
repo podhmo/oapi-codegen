@@ -250,6 +250,29 @@ func getResponseTypeDefinitions(op *OperationDefinition) []ResponseTypeDefinitio
 	return td
 }
 
+type GroupedOperationDefinitions struct {
+	Tag                  string
+	OperationDefinitions []OperationDefinition
+}
+
+func operationsGroupedByTag(ops []OperationDefinition) []GroupedOperationDefinitions {
+	var tags []string
+	m := map[string][]OperationDefinition{}
+	for _, op := range ops {
+		values, ok := m[op.Tag]
+		if !ok {
+			tags = append(tags, op.Tag)
+		}
+		m[op.Tag] = append(values, op)
+	}
+
+	dst := make([]GroupedOperationDefinitions, len(tags))
+	for i, tag := range tags {
+		dst[i] = GroupedOperationDefinitions{Tag: tag, OperationDefinitions: m[tag]}
+	}
+	return dst
+}
+
 // Return the statusCode comparison clause from the response name.
 func getConditionOfResponseName(statusCodeVar, responseName string) string {
 	switch responseName {
@@ -296,6 +319,7 @@ var TemplateFunctions = template.FuncMap{
 	"genResponseTypeName":        genResponseTypeName,
 	"genResponseUnmarshal":       genResponseUnmarshal,
 	"getResponseTypeDefinitions": getResponseTypeDefinitions,
+	"operationsGroupedByTag":     operationsGroupedByTag,
 	"toStringArray":              toStringArray,
 	"lower":                      strings.ToLower,
 	"title":                      titleCaser.String,

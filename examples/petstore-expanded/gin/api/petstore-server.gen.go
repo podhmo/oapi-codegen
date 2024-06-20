@@ -21,16 +21,16 @@ import (
 // ServerInterface represents all server handlers.
 type ServerInterface interface {
 	// Returns all pets
-	// (GET /pets)
+	// (GET /pets) (tag:   )
 	FindPets(c *gin.Context, params FindPetsParams)
 	// Creates a new pet
-	// (POST /pets)
+	// (POST /pets) (tag:   )
 	AddPet(c *gin.Context)
 	// Deletes a pet by ID
-	// (DELETE /pets/{id})
+	// (DELETE /pets/{id}) (tag:   )
 	DeletePet(c *gin.Context, id int64)
 	// Returns a pet by ID
-	// (GET /pets/{id})
+	// (GET /pets/{id}) (tag:   )
 	FindPetByID(c *gin.Context, id int64)
 }
 
